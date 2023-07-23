@@ -3,9 +3,13 @@ package org.example;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import javax.swing.*;
+import java.util.concurrent.TimeUnit;
 
 public class LinkedinLearningTests {
 
@@ -63,7 +67,7 @@ public class LinkedinLearningTests {
 
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        driver.get("https://formy-project.herokuapp.com/switch-window");
+        driver.get("https://formy-project.herokuapp.com/ -window");
         Thread.sleep(2000);
         WebElement newtab=driver.findElement(By.id("new-tab-button"));
         newtab.click();
@@ -213,13 +217,35 @@ public class LinkedinLearningTests {
 
     @Test
     public void fileUpload() throws InterruptedException {
-
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://formy-project.herokuapp.com/fileupload");
         WebElement fileUploadFiled= driver.findElement(By.id("file-upload-field"));
         fileUploadFiled.sendKeys("C:\\Users\\Rupesh Sahu\\Desktop\\Capture.png");
         Thread.sleep(2000);
+
+
+        driver.quit();
+    }
+
+    @Test
+    public void implicitWait() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://formy-project.herokuapp.com/fileupload");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);// similar to Thread.sleep();
+
+
+        driver.quit();
+    }
+
+    @Test
+    public void explicitWait() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://formy-project.herokuapp.com/fileupload");
+        WebDriverWait wait= new WebDriverWait(driver,10);
+        WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("elementid")));
 
 
         driver.quit();

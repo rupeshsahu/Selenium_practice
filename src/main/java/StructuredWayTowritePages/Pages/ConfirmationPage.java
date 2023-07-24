@@ -1,4 +1,4 @@
-package FormAutomation.pages;
+package StructuredWayTowritePages.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

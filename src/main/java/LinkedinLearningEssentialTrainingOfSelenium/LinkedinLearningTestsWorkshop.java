@@ -1,17 +1,17 @@
-package org.example;
+package LinkedinLearningEssentialTrainingOfSelenium;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class LinkedinLearningTests {
+public class LinkedinLearningTestsWorkshop {
 
     @Test
     public  void enterName() {
@@ -67,22 +67,32 @@ public class LinkedinLearningTests {
 
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        driver.get("https://formy-project.herokuapp.com/ -window");
+        driver.get("https://formy-project.herokuapp.com/switch-window");
+        driver.manage().window().maximize();
         Thread.sleep(2000);
         WebElement newtab=driver.findElement(By.id("new-tab-button"));
         newtab.click();
         Thread.sleep(2000);
-
+       // Set set=driver.getWindowHandles();
+        List<String> listOfWindows=new ArrayList<>();
         String originalHandle=driver.getWindowHandle();
         for(String handle:driver.getWindowHandles()) {
             driver.switchTo().window(handle);
+           listOfWindows.add(driver.getCurrentUrl());
         }
         Thread.sleep(2000);
         WebElement el=driver.findElement(By.xpath("/html/body/div/div/li[1]/a"));
         el.click();
-
-        Thread.sleep(2000);
         driver.switchTo().window(originalHandle);
+        Thread.sleep(2000);
+        newtab.click();
+        driver.switchTo().window(originalHandle);
+        Thread.sleep(2000);
+        newtab.click();
+
+
+
+
         Thread.sleep(2000);
 
 

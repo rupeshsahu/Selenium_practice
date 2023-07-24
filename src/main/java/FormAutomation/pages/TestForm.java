@@ -1,4 +1,4 @@
-package org.example;
+package FormAutomation.pages;
 
 import FormAutomation.pages.ConfirmationPage;
 import FormAutomation.pages.FormPage;
@@ -19,7 +19,6 @@ public class TestForm {
         formPage.submitForm(driver);
         ConfirmationPage confirmationPage=new ConfirmationPage();
         confirmationPage.waitForAlertBanner(driver);
-
         Assert.assertEquals(confirmationPage.getMsgFromAlertPage(driver),"The form was successfully submitted!");
         Thread.sleep(2000);
 

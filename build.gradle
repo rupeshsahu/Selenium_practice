@@ -14,5 +14,7 @@ dependencies {
     implementation 'org.testng:testng:7.1.0'
     testImplementation 'org.testng:testng:7.8.0'
     implementation 'org.seleniumhq.selenium:selenium-java:2.41.0'
+    implementation 'log4j:log4j:1.2.17'
+
 }
 
